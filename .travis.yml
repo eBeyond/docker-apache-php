@@ -1,0 +1,9 @@
+language: ruby
+
+services:
+  - docker
+
+before_install:
+  - docker build -t eBeyond/docker-apache-php .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push eBeyond/docker-apache-php
