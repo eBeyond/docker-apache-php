@@ -1,3 +1,3 @@
 FROM php:7-apache
-RUN pecl install redis-4.1.1 \
+RUN pecl install redis \
     && docker-php-ext-enable redis
