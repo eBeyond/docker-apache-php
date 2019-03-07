@@ -24,7 +24,8 @@ RUN pecl install redis \
     && docker-php-ext-install -j$(nproc) iconv \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
-    && pecl install geoip
+    && pecl install geoip-1.1.1 \
+    && docker-php-ext-enable geoip
 RUN sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 EXPOSE 8080
 CMD docker-php-entrypoint apache2-foreground
