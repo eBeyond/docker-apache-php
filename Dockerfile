@@ -4,8 +4,19 @@ RUN apt-get update -y && apt-get install -y sendmail libpng-dev
 
 RUN apt-get update && \
     apt-get install -y \
-        zlib1g-dev \
-	&& rm -rf /var/lib/apt/lists/*
+	libcurl4-openssl-dev \
+	libgd-dev \
+	libfreetype6-dev \
+	libldap2-dev \
+	libjpeg62-turbo-dev \
+	libmcrypt-dev \
+	libpng-dev \
+	libtidy-dev \
+	libxslt-dev \
+	zlib1g-dev \
+	libicu-dev \
+	--no-install-recommends && \
+	rm -rf /var/lib/apt/lists/*
 RUN pecl install redis \
     && docker-php-ext-enable redis \
     && docker-php-ext-install pdo pdo_mysql gd
