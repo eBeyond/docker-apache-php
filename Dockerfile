@@ -1,7 +1,7 @@
 FROM php:7-apache
 ENV PORT 8080
 RUN apt-get update -y && apt-get install -y sendmail libpng-dev
-
+RUN a2enmod rewrite
 RUN apt-get update && \
     apt-get install -y \
 	libcurl4-openssl-dev \
