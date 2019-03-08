@@ -32,5 +32,5 @@ COPY apache2/apache2.conf /etc/apache2/
 COPY php/php.ini /usr/local/etc/php/
 RUN sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 EXPOSE 8080
-CMD [ "/usr/local/bin/ep", "-v", "/etc/nginx/nginx.conf", "--", "docker-php-entrypoint", "apache2-foreground" ]
+CMD [ "/usr/local/bin/ep", "-v", "/usr/local/etc/php/php.ini", "--", "docker-php-entrypoint", "apache2-foreground" ]
 #CMD docker-php-entrypoint apache2-foreground
