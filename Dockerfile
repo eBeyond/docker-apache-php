@@ -14,6 +14,7 @@ RUN apt-get update && \
 	libtidy-dev \
 	libxslt-dev \
 	zlib1g-dev \
+	libzip-dev \
 	libicu-dev \
 	libgeoip-dev \
 	--no-install-recommends && \
