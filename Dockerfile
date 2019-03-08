@@ -27,7 +27,10 @@ RUN pecl install redis \
     && docker-php-ext-install -j$(nproc) gd \
     && pecl install geoip-1.1.1 \
     && docker-php-ext-enable geoip
+RUN curl -sLo /usr/local/bin/ep https://github.com/kreuzwerker/envplate/releases/download/v0.0.8/ep-linux && chmod +x /usr/local/bin/ep
 COPY apache2/apache2.conf /etc/apache2/
+COPY php/php.ini /usr/local/etc/php/
 RUN sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 EXPOSE 8080
-CMD docker-php-entrypoint apache2-foreground
+CMD [ "/usr/local/bin/ep", "-v", "/etc/nginx/nginx.conf", "--", "docker-php-entrypoint", "apache2-foreground" ]
+#CMD docker-php-entrypoint apache2-foreground
