@@ -35,4 +35,5 @@ RUN sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apa
 EXPOSE 8080
 #CMD [ "/usr/local/bin/ep", "-v", "/usr/local/etc/php/php.ini", "--", "chmod", "a=rw", "/usr/local/etc/php/php.ini", "docker-php-entrypoint", "apache2-foreground" ]
 CMD [ "/usr/local/bin/ep", "-v", "/usr/local/etc/php/php.ini", "--", "docker-php-entrypoint", "apache2-foreground" ]
+CMD /usr/local/bin/ep -v /usr/local/etc/php/php.ini && docker-php-entrypoint apache2-foreground
 #CMD docker-php-entrypoint apache2-foreground
