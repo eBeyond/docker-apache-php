@@ -30,8 +30,9 @@ RUN pecl install redis \
 RUN curl -sLo /usr/local/bin/ep https://github.com/kreuzwerker/envplate/releases/download/v0.0.8/ep-linux && chmod +x /usr/local/bin/ep
 COPY apache2/apache2.conf /etc/apache2/
 COPY php/php.ini /usr/local/etc/php/
-RUN chmod a+r /usr/local/etc/php/php.ini
+RUN chmod a=rw /usr/local/etc/php/php.ini
 RUN sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 EXPOSE 8080
+#CMD [ "/usr/local/bin/ep", "-v", "/usr/local/etc/php/php.ini", "--", "chmod", "a=rw", "/usr/local/etc/php/php.ini", "docker-php-entrypoint", "apache2-foreground" ]
 CMD [ "/usr/local/bin/ep", "-v", "/usr/local/etc/php/php.ini", "--", "docker-php-entrypoint", "apache2-foreground" ]
 #CMD docker-php-entrypoint apache2-foreground
